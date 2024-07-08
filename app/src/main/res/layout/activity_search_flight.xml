@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etSearchTerm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập điểm đi hoặc điểm đến (Ví dụ: Hồ Chí Minh)"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tìm kiếm"/>
+
+</LinearLayout>

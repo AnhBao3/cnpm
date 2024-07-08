@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán bằng thẻ"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/etCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Số thẻ"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/etCardExpiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ngày hết hạn (MM/YY)"
+        android:layout_below="@+id/etCardNumber"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/etCardCVV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CVV"
+        android:layout_below="@+id/etCardExpiry"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/etCardAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Số tiền"
+        android:layout_below="@+id/etCardCVV"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tvTotalAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tổng số tiền: "
+        android:layout_below="@+id/etCardAmount"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/btnPayByCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán bằng thẻ"
+        android:layout_below="@+id/tvTotalAmount"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnPayByCash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán bằng tiền mặt tại quầy"
+        android:layout_below="@+id/btnPayByCard"
+        android:layout_marginTop="16dp"/>
+</RelativeLayout>
+
