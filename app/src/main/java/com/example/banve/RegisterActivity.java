@@ -55,7 +55,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         db.close();
     }
-
     private void navigateToLoginActivity() {
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);

@@ -11,19 +11,12 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    // Tên cơ sở dữ liệu
     private static final String DATABASE_NAME = "flight_ticket_app.db";
-
-    // Phiên bản cơ sở dữ liệu
-    private static final int DATABASE_VERSION = 3; // Updated version
-
-    // Tên bảng và các cột trong bảng User
+    private static final int DATABASE_VERSION = 3;
     public static final String TABLE_USER = "User";
     public static final String COLUMN_USER_ID = "UserID";
     public static final String COLUMN_USERNAME = "Username";
     public static final String COLUMN_PASSWORD = "Password";
-
-    // Tên bảng và các cột trong bảng Flight
     public static final String TABLE_FLIGHT = "Flight";
     public static final String COLUMN_FLIGHT_ID = "FlightID";
     public static final String COLUMN_FLIGHT_NUMBER = "FlightNumber";
@@ -34,23 +27,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ARRIVAL_TIME = "ArrivalTime";
     public static final String COLUMN_AIRLINE_CODE = "AirlineCode";
     public static final String COLUMN_PRICE = "Price";
-
-    // Tên bảng và các cột trong bảng Booking
     public static final String TABLE_BOOKING = "Booking";
     public static final String COLUMN_BOOKING_ID = "BookingID";
     public static final String COLUMN_BOOKING_USER_ID = "UserID";
     public static final String COLUMN_BOOKING_FLIGHT_ID = "FlightID";
     public static final String COLUMN_BOOKING_DATE = "BookingDate";
-    public static final String COLUMN_PAYMENT_STATUS = "PaymentStatus"; // New column
+    public static final String COLUMN_PAYMENT_STATUS = "PaymentStatus";
 
-    // Câu lệnh SQL để tạo bảng User
     private static final String SQL_CREATE_USER =
             "CREATE TABLE " + TABLE_USER + " (" +
                     COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     COLUMN_USERNAME + " TEXT NOT NULL UNIQUE," +
                     COLUMN_PASSWORD + " TEXT NOT NULL)";
 
-    // Câu lệnh SQL để tạo bảng Flight
     private static final String SQL_CREATE_FLIGHT =
             "CREATE TABLE " + TABLE_FLIGHT + " (" +
                     COLUMN_FLIGHT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -63,7 +52,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     COLUMN_AIRLINE_CODE + " TEXT NOT NULL," +
                     COLUMN_PRICE + " REAL NOT NULL)";
 
-    // Câu lệnh SQL để tạo bảng Booking
     private static final String SQL_CREATE_BOOKING =
             "CREATE TABLE " + TABLE_BOOKING + " (" +
                     COLUMN_BOOKING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -76,7 +64,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static DBHelper instance;
 
-    // Singleton pattern để đảm bảo chỉ có một instance của DBHelper tồn tại
     public static synchronized DBHelper getInstance(Context context) {
         if (instance == null) {
             instance = new DBHelper(context.getApplicationContext());
@@ -90,12 +77,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Tạo các bảng
         db.execSQL(SQL_CREATE_USER);
         db.execSQL(SQL_CREATE_FLIGHT);
         db.execSQL(SQL_CREATE_BOOKING);
 
-        // Chèn dữ liệu mẫu
         insertSampleData(db);
     }
 
@@ -104,7 +89,6 @@ public class DBHelper extends SQLiteOpenHelper {
         if (oldVersion < 3) {
             db.execSQL("ALTER TABLE " + TABLE_BOOKING + " ADD COLUMN " + COLUMN_PAYMENT_STATUS + " TEXT NOT NULL DEFAULT 'Unpaid'");
         } else {
-            // Xóa bảng cũ nếu tồn tại và tạo lại
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKING);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_FLIGHT);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
@@ -112,9 +96,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    // Phương thức để chèn dữ liệu mẫu vào các bảng
     private void insertSampleData(SQLiteDatabase db) {
-        // Chèn dữ liệu vào bảng User
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, "user1");
         values.put(COLUMN_PASSWORD, "password1");
@@ -127,7 +109,6 @@ public class DBHelper extends SQLiteOpenHelper {
         long userResult2 = db.insert(TABLE_USER, null, values);
         Log.d("DBHelper", "Inserted user ID: " + userResult2);
 
-        // Chèn dữ liệu vào bảng Flight
         values.clear();
         values.put(COLUMN_FLIGHT_NUMBER, "VN123");
         values.put(COLUMN_DEPARTURE, "Hồ Chí Minh");
@@ -163,9 +144,81 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PRICE, 1000000.0);
         long flightResult3 = db.insert(TABLE_FLIGHT, null, values);
         Log.d("DBHelper", "Inserted flight ID: " + flightResult3);
+
+        values.clear();
+        values.put(COLUMN_FLIGHT_NUMBER, "VN890");
+        values.put(COLUMN_DEPARTURE, "Hồ Chí Minh");
+        values.put(COLUMN_ARRIVAL, "Singapore");
+        values.put(COLUMN_DATE, "2024-07-13");
+        values.put(COLUMN_DEPARTURE_TIME, "14:00");
+        values.put(COLUMN_ARRIVAL_TIME, "17:00");
+        values.put(COLUMN_AIRLINE_CODE, "VNA");
+        values.put(COLUMN_PRICE, 2500000.0);
+        long flightResult4 = db.insert(TABLE_FLIGHT, null, values);
+        Log.d("DBHelper", "Inserted flight ID: " + flightResult4);
+
+        values.clear();
+        values.put(COLUMN_FLIGHT_NUMBER, "VN567");
+        values.put(COLUMN_DEPARTURE, "Hà Nội");
+        values.put(COLUMN_ARRIVAL, "Bangkok");
+        values.put(COLUMN_DATE, "2024-07-14");
+        values.put(COLUMN_DEPARTURE_TIME, "15:00");
+        values.put(COLUMN_ARRIVAL_TIME, "17:00");
+        values.put(COLUMN_AIRLINE_CODE, "VNA");
+        values.put(COLUMN_PRICE, 3000000.0);
+        long flightResult5 = db.insert(TABLE_FLIGHT, null, values);
+        Log.d("DBHelper", "Inserted flight ID: " + flightResult5);
+
+        values.clear();
+        values.put(COLUMN_FLIGHT_NUMBER, "VN678");
+        values.put(COLUMN_DEPARTURE, "Đà Nẵng");
+        values.put(COLUMN_ARRIVAL, "Kuala Lumpur");
+        values.put(COLUMN_DATE, "2024-07-15");
+        values.put(COLUMN_DEPARTURE_TIME, "16:00");
+        values.put(COLUMN_ARRIVAL_TIME, "18:30");
+        values.put(COLUMN_AIRLINE_CODE, "VNA");
+        values.put(COLUMN_PRICE, 3500000.0);
+        long flightResult6 = db.insert(TABLE_FLIGHT, null, values);
+        Log.d("DBHelper", "Inserted flight ID: " + flightResult6);
+
+        values.clear();
+        values.put(COLUMN_FLIGHT_NUMBER, "VN7890");
+        values.put(COLUMN_DEPARTURE, "Hồ Chí Minh");
+        values.put(COLUMN_ARRIVAL, "Tokyo");
+        values.put(COLUMN_DATE, "2024-07-16");
+        values.put(COLUMN_DEPARTURE_TIME, "07:00");
+        values.put(COLUMN_ARRIVAL_TIME, "15:00");
+        values.put(COLUMN_AIRLINE_CODE, "VNA");
+        values.put(COLUMN_PRICE, 8000000.0);
+        long flightResult7 = db.insert(TABLE_FLIGHT, null, values);
+        Log.d("DBHelper", "Inserted flight ID: " + flightResult7);
+
+        values.clear();
+        values.put(COLUMN_FLIGHT_NUMBER, "VN4567");
+        values.put(COLUMN_DEPARTURE, "Hồ Chí Minh");
+        values.put(COLUMN_ARRIVAL, "Sydney");
+        values.put(COLUMN_DATE, "2024-07-17");
+        values.put(COLUMN_DEPARTURE_TIME, "20:00");
+        values.put(COLUMN_ARRIVAL_TIME, "06:00");
+        values.put(COLUMN_AIRLINE_CODE, "VNA");
+        values.put(COLUMN_PRICE, 10000000.0);
+        long flightResult8 = db.insert(TABLE_FLIGHT, null, values);
+        Log.d("DBHelper", "Inserted flight ID: " + flightResult8);
+
+        values.clear();
+        values.put(COLUMN_FLIGHT_NUMBER, "VN1234");
+        values.put(COLUMN_DEPARTURE, "Hồ Chí Minh");
+        values.put(COLUMN_ARRIVAL, "Paris");
+        values.put(COLUMN_DATE, "2024-07-18");
+        values.put(COLUMN_DEPARTURE_TIME, "23:00");
+        values.put(COLUMN_ARRIVAL_TIME, "08:00");
+        values.put(COLUMN_AIRLINE_CODE, "VNA");
+        values.put(COLUMN_PRICE, 12000000.0);
+        long flightResult9 = db.insert(TABLE_FLIGHT, null, values);
+        Log.d("DBHelper", "Inserted flight ID: " + flightResult9);
     }
 
-    // Phương thức để đóng kết nối cơ sở dữ liệu
+
     public void closeDatabase() {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen()) {
@@ -173,7 +226,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    // Phương thức để lấy userId từ username
     public int getUserId(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
@@ -196,14 +248,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return userId;
     }
 
-    // Phương thức để thêm booking vào bảng Booking
     public void addBooking(Booking booking) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_BOOKING_USER_ID, getUserId(booking.getUsername())); // Lấy userId từ username
-        values.put(COLUMN_BOOKING_FLIGHT_ID, booking.getFlight().getFlightID()); // Lấy flightId từ flight
-        values.put(COLUMN_BOOKING_DATE, booking.getFlight().getDate()); // Lấy ngày từ flight
-        values.put(COLUMN_PAYMENT_STATUS, booking.getPaymentStatus()); // Set default payment status to "Unpaid"
+        values.put(COLUMN_BOOKING_USER_ID, getUserId(booking.getUsername()));
+        values.put(COLUMN_BOOKING_FLIGHT_ID, booking.getFlight().getFlightID());
+        values.put(COLUMN_BOOKING_DATE, booking.getFlight().getDate());
+        values.put(COLUMN_PAYMENT_STATUS, booking.getPaymentStatus());
 
         long result = db.insert(TABLE_BOOKING, null, values);
         db.close(); // Đóng kết nối
@@ -211,7 +262,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d("DBHelper", "Booking inserted with ID: " + result);
     }
 
-    // Phương thức để lấy danh sách các booking dựa trên username
     public ArrayList<Booking> getAllBookings(String username) {
         ArrayList<Booking> bookings = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -255,15 +305,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return bookings;
     }
-
-    // Phương thức để cập nhật trạng thái thanh toán của booking
     public void updatePaymentStatus(int bookingId, String paymentStatus) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_PAYMENT_STATUS, paymentStatus);
 
         int result = db.update(TABLE_BOOKING, values, COLUMN_BOOKING_ID + " = ?", new String[]{String.valueOf(bookingId)});
-        db.close(); // Đóng kết nối
+        db.close();
 
         Log.d("DBHelper", "Payment status updated for booking ID: " + bookingId + " to " + paymentStatus + " with result: " + result);
     }
@@ -273,7 +321,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = null;
 
         try {
-            // Query flights where departure or arrival matches searchTerm
             cursor = db.rawQuery("SELECT * FROM " + TABLE_FLIGHT +
                             " WHERE " + COLUMN_DEPARTURE + " LIKE ? OR " + COLUMN_ARRIVAL + " LIKE ?",
                     new String[]{"%" + searchTerm + "%", "%" + searchTerm + "%"});

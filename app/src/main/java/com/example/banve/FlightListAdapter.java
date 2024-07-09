@@ -24,7 +24,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItem = convertView;
         if (listItem == null) {
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.flight_list_item, parent, false);
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.list_item_flight_search, parent, false);
         }
 
         Flight currentFlight = flights.get(position);

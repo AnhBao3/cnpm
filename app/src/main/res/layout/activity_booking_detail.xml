@@ -1,70 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/maybay"
     android:padding="16dp">
-
-    <TextView
-        android:id="@+id/tvBookingId"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:text="Mã đặt vé: BD123"
-        android:layout_marginBottom="8dp"/>
-    <TextView
-        android:id="@+id/tvUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:text="Người dùng: John Doe"
-        android:layout_marginBottom="4dp"/>
-    <TextView
-        android:id="@+id/tvFlightNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:text="Mã chuyến bay: VN123"
-        android:layout_marginBottom="4dp"/>
+        android:background="#D3478CCF"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvBookingId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:text="Mã đặt vé: BD123"
+            android:layout_marginBottom="8dp"/>
 
-    <TextView
-        android:id="@+id/tvDeparture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
-        android:text="Điểm khởi hành: Hà Nội"
-        android:layout_marginBottom="2dp"/>
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="Người dùng: John Doe"
+            android:layout_marginBottom="4dp"/>
 
-    <TextView
-        android:id="@+id/tvArrival"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
-        android:text="Điểm đến: Hồ Chí Minh"
-        android:layout_marginBottom="2dp"/>
+        <TextView
+            android:id="@+id/tvFlightNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="Mã chuyến bay: VN123"
+            android:layout_marginBottom="4dp"/>
 
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
-        android:text="Ngày: 01/01/2024"
-        android:layout_marginBottom="8dp"/>
+        <TextView
+            android:id="@+id/tvDeparture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="Điểm khởi hành: Hà Nội"
+            android:layout_marginBottom="2dp"/>
 
-    <TextView
-        android:id="@+id/tvPaymentStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:text="Trạng thái thanh toán: Đã thanh toán"
-        android:layout_marginBottom="4dp"/>
+        <TextView
+            android:id="@+id/tvArrival"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="Điểm đến: Hồ Chí Minh"
+            android:layout_marginBottom="2dp"/>
 
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="Ngày: 01/01/2024"
+            android:layout_marginBottom="8dp"/>
 
+        <TextView
+            android:id="@+id/tvPaymentStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="Trạng thái thanh toán: Đã thanh toán"
+            android:layout_marginBottom="4dp"/>
+    </LinearLayout>
 </LinearLayout>

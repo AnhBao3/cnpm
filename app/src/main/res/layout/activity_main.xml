@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/hinhmaybay1"
+    android:background="@drawable/maybay"
     tools:context=".MainActivity">
 
     <TextView
@@ -11,41 +11,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Danh Sách Chuyến Bay"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="24sp"
+        android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="24dp"/>
 
     <ListView
         android:id="@+id/lvFlights"
         android:layout_width="match_parent"
-        android:layout_height="625dp"
+        android:layout_height="0dp"
+        android:layout_above="@id/btnBookingHistory"
         android:layout_below="@id/tvTitle"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        />
 
     <Button
         android:id="@+id/btnBookingHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="218dp"
-        android:layout_marginBottom="-1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toStartOf="@+id/btnSearchFlight"
+        android:backgroundTint="#000000"
         android:onClick="viewBookingHistory"
-        android:text="Xem lịch sử đặt vé" />
+        android:padding="12dp"
+        android:text="Xem lịch sử đặt vé"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btnSearchFlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="213dp"
-        android:layout_marginTop="680dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#000000"
         android:onClick="onSearchFlightButtonClick"
-        android:text="Tìm kiếm chuyến bay" />
-
-
+        android:padding="12dp"
+        android:text="Tìm kiếm chuyến bay"
+        android:textColor="@color/white" />
 </RelativeLayout>

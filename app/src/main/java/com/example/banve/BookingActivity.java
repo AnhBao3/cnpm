@@ -42,7 +42,6 @@ public class BookingActivity extends AppCompatActivity {
     private void bookFlight() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        // Kiểm tra xem loggedInUsername có giá trị null hay không
         if (loggedInUsername == null) {
             Toast.makeText(this, "Lỗi: Tên người dùng không hợp lệ", Toast.LENGTH_SHORT).show();
             return;

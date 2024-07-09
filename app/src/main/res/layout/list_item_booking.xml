@@ -9,8 +9,8 @@
         android:id="@+id/tvFlightNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:textColor="@color/white"
         android:text="Mã chuyến bay: VN123"
         android:layout_marginBottom="4dp"/>
 
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/white"
         android:text="Điểm khởi hành: Hà Nội"
         android:layout_marginBottom="2dp"/>
 
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/white"
         android:text="Điểm đến: Hồ Chí Minh"
         android:layout_marginBottom="2dp"/>
 
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/white"
         android:text="Ngày: 01/01/2024"/>
 
 </LinearLayout>

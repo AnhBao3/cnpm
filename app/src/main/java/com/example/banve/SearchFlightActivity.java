@@ -17,6 +17,7 @@ public class SearchFlightActivity extends AppCompatActivity {
     private EditText etSearchTerm;
     private Button btnSearch;
     private DBHelper dbHelper;
+    private String loggedInUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,29 +28,30 @@ public class SearchFlightActivity extends AppCompatActivity {
         btnSearch = findViewById(R.id.btnSearch);
         dbHelper = DBHelper.getInstance(this);
 
+        loggedInUsername = getIntent().getStringExtra("username");
+
         btnSearch.setOnClickListener(v -> searchFlights());
     }
 
     private void searchFlights() {
         String searchTerm = etSearchTerm.getText().toString().trim();
 
-        // Check if search term is filled
         if (TextUtils.isEmpty(searchTerm)) {
             Toast.makeText(this, "Vui lòng nhập điểm đi hoặc điểm đến", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Perform search logic based on searchTerm (departure or arrival)
         ArrayList<Flight> searchResults = dbHelper.getFlightsByDepartureOrArrival(searchTerm);
 
         if (searchResults.isEmpty()) {
             Toast.makeText(this, "Không tìm thấy chuyến bay phù hợp", Toast.LENGTH_SHORT).show();
         } else {
-            // Pass search results to FlightListActivity
             Intent intent = new Intent(this, FlightListActivity.class);
             intent.putParcelableArrayListExtra("searchResults", searchResults);
+            intent.putExtra("username", loggedInUsername);
             startActivity(intent);
+            System.out.println(searchTerm);
         }
     }
-
 }
+

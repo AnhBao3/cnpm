@@ -18,17 +18,9 @@ public class FlightDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight_detail);
-
-        // Initialize views
         initializeViews();
-
-        // Retrieve flight data from intent
         retrieveIntentData();
-
-        // Display flight details if available
         displayFlightDetails();
-
-        // Handle button click to book flight
         setupBookButton();
     }
 
@@ -48,20 +40,21 @@ public class FlightDetailActivity extends AppCompatActivity {
         flight = getIntent().getParcelableExtra("flightDetail");
         username = getIntent().getStringExtra("username");
 
-        // Check for null values
         if (flight == null) {
             Toast.makeText(this, "Lỗi: Không tìm thấy thông tin chuyến bay", Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
 
         if (username == null) {
             Toast.makeText(this, "Lỗi: Tên người dùng không hợp lệ", Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
     }
 
+
     private void displayFlightDetails() {
-        // Display flight details if flight is not null
         if (flight != null) {
             tvFlightNumber.setText("Mã chuyến bay: " + flight.getFlightNumber());
             tvDeparture.setText("Điểm khởi hành: " + flight.getDeparture());
@@ -70,18 +63,17 @@ public class FlightDetailActivity extends AppCompatActivity {
             tvDepartureTime.setText("Giờ khởi hành: " + flight.getDepartureTime());
             tvArrivalTime.setText("Giờ đến: " + flight.getArrivalTime());
             tvAirlineCode.setText("Mã hãng: " + flight.getAirlineCode());
-            tvPrice.setText("Giá: " + flight.getPrice() + " VND");
-        }
+            String priceText = String.format("Giá: %.0f VND", flight.getPrice());
+            tvPrice.setText(priceText);        }
     }
 
     private void setupBookButton() {
         Button btnBook = findViewById(R.id.btnBook);
         btnBook.setOnClickListener(v -> {
-            // Navigate to BookingActivity
             Intent intent = new Intent(FlightDetailActivity.this, BookingActivity.class);
             intent.putExtra("flightDetail", flight);
             intent.putExtra("username", username);
-            intent.putExtra("flightPrice", flight.getPrice()); // Pass the flight price
+            intent.putExtra("flightPrice", flight.getPrice());
             startActivity(intent);
         });
     }

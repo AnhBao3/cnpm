@@ -27,24 +27,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Intent intent = getIntent();
         loggedInUsername = intent.getStringExtra("username");
-
-        // Kiểm tra xem đã có username đăng nhập hay chưa
         if (loggedInUsername == null) {
-            // Nếu chưa có, chuyển sang LoginActivity để đăng nhập
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
-            finish(); // Đóng MainActivity để ngăn người dùng quay lại nếu không đăng nhập
+            finish();
             return;
         }
-
-        // Nếu đã đăng nhập, tiếp tục load danh sách chuyến bay và các hoạt động khác
         lvFlights = findViewById(R.id.lvFlights);
         flights = new ArrayList<>();
         dbHelper = new DBHelper(this);
-
         loadFlights();
 
         lvFlights.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -57,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Cài đặt sự kiện cho nút xem lịch sử đặt vé
         Button btnBookingHistory = findViewById(R.id.btnBookingHistory);
         btnBookingHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         cursor.close();
-
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, flights);
+        adapter = new FlightAdapter(MainActivity.this, flights);
         lvFlights.setAdapter(adapter);
     }
     public void viewBookingHistory(View view) {
@@ -103,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onSearchFlightButtonClick(View view) {
         Intent intent = new Intent(this, SearchFlightActivity.class);
+        intent.putExtra("username", loggedInUsername);
         startActivity(intent);
     }
+
 
 }
